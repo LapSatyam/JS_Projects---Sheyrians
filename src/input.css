@@ -23,3 +23,15 @@
 #board {
   @apply border w-full h-[92%] border-zinc-400/20 grid grow grid-cols-[repeat(auto-fit,minmax(50px,1fr))] grid-rows-[repeat(auto-fit,minmax(50px,1fr))];
 }
+
+.colum{
+  @apply bg-zinc-800/60 rounded-xl h-full;
+}
+
+.heading{
+  @apply w-full flex justify-between p-2 ;
+}
+
+.task{
+  @apply w-full bg-zinc-700/50 flex flex-col; 
+}
