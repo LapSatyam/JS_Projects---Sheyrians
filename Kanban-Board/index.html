@@ -11,7 +11,7 @@
     <!-- Header Part -->
     <header class="w-full h-auto">
       <nav class="w-full flex justify-between p-3">
-        <div class="text-2xl font-serif">Kanban</div>
+        <div class="text-4xl font-[gilroy]">Kanban</div>
         <button class="h-10 rounded-md p-2 bg-zinc-800">New Task</button>
       </nav>
     </header>
@@ -19,31 +19,35 @@
     <!-- Main Content -->
     <main class="grid grid-cols-3 gap-9 p-4 h-[85%] font-mono">
       <!-- Section 1 -->
-      <div class="col-span-1 colum">
+      <div id="todo" class="col-span-1 colum">
         <!-- Heading -->
         <div class="heading">
           <div class="">TO DO</div>
           <div class="">Count</div>
         </div>
         <!-- Tasks -->
-        <div class="">
-          <div class="task">
-            <h2>Hello sir</h2>
-            <p>May i Help U?</p>
-            <button class="self-end">Delete</button>
+        <div class="task-column">
+          <div class="task" draggable="true">
+            <div>
+              <h2 class="title">Task 1</h2>
+              <p class="para">Discription</p>
+            </div>
+            <button class="button">Delete</button>
           </div>
         </div>
       </div>
+
       <!-- Section 2 -->
-      <div class="col-span-1 colum">
+      <div id="progress" class="col-span-1 colum">
         <!-- Heading -->
         <div class="heading">
           <div class="">In Progress</div>
           <div class="">Count</div>
         </div>
       </div>
+
       <!-- Section 3 -->
-      <div class="col-span-1 colum">
+      <div id="done" class="col-span-1 colum">
         <!-- Heading -->
         <div class="heading">
           <div class="">Done</div>
