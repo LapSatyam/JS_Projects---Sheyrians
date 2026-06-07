@@ -49,7 +49,7 @@
 }
 
 .task-column {
-  @apply p-2;
+  @apply p-2 h-full w-full flex flex-col gap-2;
 }
 
 .hover {
