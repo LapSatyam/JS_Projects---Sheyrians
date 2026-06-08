@@ -1,6 +1,7 @@
 const Alltask = document.querySelectorAll(".task");
-const colum = document.querySelectorAll(".colum");
+const colums = document.querySelectorAll(".colum");
 const form = document.getElementById("form");
+const todo = document.getElementById("todo");
 
 let dragElement = null;
 
@@ -11,7 +12,7 @@ Alltask.forEach(task => {
     })
 });
 
-colum.forEach(col => {
+colums.forEach(col => {
     col.addEventListener("dragenter", (e) => {
         e.preventDefault();
         col.classList.add("hover");
@@ -27,6 +28,10 @@ colum.forEach(col => {
         e.preventDefault();
         col.appendChild(dragElement);
         col.classList.remove("hover");
+        colums.forEach(col => {
+            const tasks = col.querySelectorAll(".task");
+            col.querySelector(".count").textContent = tasks.length;
+        });
     });
 });
 
@@ -34,19 +39,30 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const taskTitle = document.getElementById("Inptitle").value.trim();
-    const taskDis  = document.getElementById("Inpdis").value.trim();
-    const tasks = document.getElementById("tasks");
+    const taskDis = document.getElementById("Inpdis").value.trim();
+    const div = document.createElement("div");
 
-    tasks.innerHTML += `
-    <div class="task" draggable="true">
+    div.className = "task mb-2";
+    div.setAttribute("draggable", "true");
+    div.innerHTML = `
             <div>
               <h2 class="title">${taskTitle}</h2>
               <p class="para">${taskDis}</p>
             </div>
             <button class="button">Delete</button>
           </div>
-        </div>
     `;
 
+    div.addEventListener("drag", () => {
+        dragElement = div;
+    })
+
+    todo.appendChild(div);
+
+    colums.forEach(col => {
+        const tasks = col.querySelectorAll(".task");
+        col.querySelector(".count").textContent = tasks.length;
+    });
     document.getElementById("taskModal").classList.add("hidden");
-})
+    // console.log(Alltask);
+});

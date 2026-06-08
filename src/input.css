@@ -33,7 +33,7 @@
 }
 
 .task {
-  @apply w-full bg-zinc-700 flex flex-col gap-0.5 p-2 rounded-lg cursor-grab;
+  @apply w-full bg-zinc-700 flex flex-col gap-0.5 p-2 rounded-lg cursor-grab mb-2;
 }
 
 .button {
