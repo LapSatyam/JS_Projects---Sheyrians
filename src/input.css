@@ -47,3 +47,7 @@
 .tasks{
   @apply w-full h-full p-0.5;
 }
+
+.btn{
+  @apply p-1;
+}

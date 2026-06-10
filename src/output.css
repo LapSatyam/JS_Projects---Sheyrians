@@ -7,6 +7,7 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-400: oklch(70.4% 0.191 22.216);
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-red-700: oklch(50.5% 0.213 27.518);
@@ -14,6 +15,7 @@
     --color-yellow-500: oklch(79.5% 0.184 86.047);
     --color-emerald-400: oklch(76.5% 0.177 163.223);
     --color-emerald-500: oklch(69.6% 0.17 162.48);
+    --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-zinc-50: oklch(98.5% 0 0);
     --color-zinc-200: oklch(92% 0.004 286.32);
     --color-zinc-300: oklch(87.1% 0.006 286.286);
@@ -257,6 +259,9 @@
   .h-auto {
     height: auto;
   }
+  .h-fit {
+    height: fit-content;
+  }
   .h-screen {
     height: 100vh;
   }
@@ -298,6 +303,9 @@
   }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
   }
   .gap-9 {
     gap: calc(var(--spacing) * 9);
@@ -353,8 +361,14 @@
       background-color: color-mix(in oklab, var(--color-black) 70%, transparent);
     }
   }
+  .bg-blue-400 {
+    background-color: var(--color-blue-400);
+  }
   .bg-emerald-500 {
     background-color: var(--color-emerald-500);
+  }
+  .bg-red-400 {
+    background-color: var(--color-red-400);
   }
   .bg-red-600 {
     background-color: var(--color-red-600);
@@ -444,6 +458,9 @@
   }
   .text-white {
     color: var(--color-white);
+  }
+  .text-zinc-200 {
+    color: var(--color-zinc-200);
   }
   .text-zinc-300 {
     color: var(--color-zinc-300);
@@ -627,6 +644,9 @@
   height: 100%;
   width: 100%;
   padding: calc(var(--spacing) * 0.5);
+}
+.btn {
+  padding: calc(var(--spacing) * 1);
 }
 @property --tw-rotate-x {
   syntax: "*";
