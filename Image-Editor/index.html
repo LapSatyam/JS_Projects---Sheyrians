@@ -1,46 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Editor</title>
     <!-- Tailwind Link -->
-     <link rel="stylesheet" href="../src/output.css">
-     <!-- Icon CDN -->
-      <link
-  href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
-  rel="stylesheet"
-/>
-</head>
-<body class="h-screen w-full bg-zinc-900 text-zinc-200 p-2">
-    <header class="h-fit w-full flex justify-center items-center gap-4">
-        <label for="input-img">
-            Choose Image
-            <input type="file" name="image" id="input-img" hidden>
-        </label>
+    <link rel="stylesheet" href="../src/output.css" />
+    <!-- Icon CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="h-screen w-full bg-zinc-900 text-zinc-200 p-2">
+    <header class="h-fit w-full flex justify-center items-center gap-4 mt-5">
+      <label for="input-img">
+        Choose Image
+        <input type="file" name="image" id="input-img" hidden />
+      </label>
 
-        <button class="btn bg-red-600/90 text-white">
-            Reset
-        </button>
-        
-        <button class="btn bg-green-500 text-white">
-            Download
-        </button>
+      <button class="btn bg-red-600/90 text-white">Reset</button>
+
+      <button class="btn bg-green-500 text-white">Download</button>
     </header>
 
-    <main class="w-full h-[92.925%] flex gap-2 mt-5">
-        <!-- Left Side -->
-        <div class= "w-[50%] h-full flex justify-center flex-col">
-            <i class="ri-image-line text-9xl self-center"></i>
-            <div class="text-xl self-center">No Image Added</div>
+    <main class="w-full h-[90%] flex gap-5 mt-5 p-6">
+      <!-- Left Side -->
+      <div
+        class="w-full h-full bg-zinc-800/80 flex justify-center items-center"
+      >
+        <div
+          id="placeholder"
+          class="w-full h-full flex justify-center flex-col"
+        >
+          <i class="ri-image-line text-9xl self-center"></i>
+          <div class="text-xl self-center">No Image Added</div>
         </div>
+        <canvas
+          id="canvas-img"
+          class="max-w-[90%] max-h-[80vh] hidden"
+        ></canvas>
+      </div>
 
-        <!-- Right Side -->
-        <div class="w-[50%] h-full">
-            <div class="filters w-full h-full"></div>
-        </div>
+      <!-- Right Side -->
+      <div class="w-[40%] h-full bg-zinc-800/80">
+        <div class="filters w-full h-full"></div>
+      </div>
     </main>
 
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>

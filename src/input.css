@@ -53,9 +53,27 @@
 }
 
 .filters {
-  @apply flex items-center flex-col pt-15 capitalize gap-2;
+  @apply flex items-center flex-col pt-15 capitalize gap-2.5;
 }
 
 .filter input {
   @apply w-70;
+}
+
+.range-red {
+  @apply appearance-none bg-transparent cursor-pointer;
+}
+
+/* Chrome, Edge, Safari */
+.range-red::-webkit-slider-runnable-track {
+  @apply h-1 rounded-full bg-red-600/35;
+}
+
+.range-red::-webkit-slider-thumb {
+  @apply appearance-none h-4.5 w-4.5 rounded-full bg-red-600 border-2 border-red-100;
+  margin-top: -7px;
+}
+
+.range-red::-moz-range-thumb {
+  @apply h-5 w-5 rounded-full bg-red-600 border-2 border-red-100;
 }

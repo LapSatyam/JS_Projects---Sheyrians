@@ -56,6 +56,12 @@ const filters = {
     }
 };
 const filterContainer = document.querySelector(".filters");
+const ImgInput = document.querySelector("#input-img");
+const ImgCanvas = document.querySelector("#canvas-img")
+const canvasCtx = ImgCanvas.getContext("2d");
+
+let image = null;
+
 
 Object.keys(filters).forEach(key => {
     const F = filters[key];
@@ -68,7 +74,21 @@ Object.keys(filters).forEach(key => {
 });
 
 
+ImgInput.addEventListener("change", e => {
+    const file = e.target.files[0];
 
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+
+    img.onload = () => {
+        image = img;
+        ImgCanvas.classList.remove("hidden");
+        document.querySelector("#placeholder").classList.add("hidden");
+        ImgCanvas.width = img.width;
+        ImgCanvas.height = img.height;
+        canvasCtx.drawImage(img, 0, 0);
+    };
+})
 
 
 
@@ -81,6 +101,7 @@ function createFilterElement(name, unit = "%", value, min, max) {
     div.classList.add("filter");
 
     const input = document.createElement("input");
+    input.className = "range-red w-full"
     input.type = "range";
     input.min = min;
     input.max = max;
@@ -93,5 +114,15 @@ function createFilterElement(name, unit = "%", value, min, max) {
     div.appendChild(p);
     div.appendChild(input);
 
+    input.addEventListener("input", e => {
+        filters[name].value = input.value;
+        applyFilters(name);
+    });
+
     return div;
+};
+
+function applyFilters(name) {
+    canvasCtx.filter = `${name}(${filters[name].value}${filters[name].unit})`;
+    canvasCtx.drawImage(image, 0, 0);
 };
