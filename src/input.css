@@ -44,10 +44,18 @@
   @apply border-zinc-50 bg-zinc-800 -translate-y-1;
 }
 
-.tasks{
+.tasks {
   @apply w-full h-full p-0.5;
 }
 
-.btn{
-  @apply p-1;
+.btn {
+  @apply p-1 rounded-sm font-semibold;
+}
+
+.filters {
+  @apply flex items-center flex-col pt-15 capitalize gap-2;
+}
+
+.filter input {
+  @apply w-70;
 }
