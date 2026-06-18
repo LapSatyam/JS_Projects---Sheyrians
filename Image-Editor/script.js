@@ -123,6 +123,11 @@ function createFilterElement(name, unit = "%", value, min, max) {
 };
 
 function applyFilters(name) {
-    canvasCtx.filter = `${name}(${filters[name].value}${filters[name].unit})`;
+    if (name == "hueRotate") {
+        canvasCtx.filter = `hue-rotate(${filters[name].value}${filters[name].unit})`;
+    } else {
+
+        canvasCtx.filter = `${name}(${filters[name].value}${filters[name].unit})`;
+    };
     canvasCtx.drawImage(image, 0, 0);
 };
