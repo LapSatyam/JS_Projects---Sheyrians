@@ -4,60 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Editor</title>
-    <!-- Tailwind Link -->
+
+    <!-- Tailwind CSS -->
     <link rel="stylesheet" href="../src/output.css" />
-    <!-- Icon CDN -->
+
+    <!-- Remix Icons -->
     <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
     />
   </head>
-  <body class="h-screen w-full bg-zinc-950 text-zinc-200 p-2">
-    <header class="h-fit w-full flex justify-center items-center gap-4 mt-5">
+
+  <body class="h-screen bg-zinc-900 text-zinc-200 p-2">
+    <!-- Toolbar -->
+    <header class="flex justify-center items-center gap-2 py-2">
       <label
         for="input-img"
-        class="btn bg-zinc-100 text-zinc-900 hover:bg-white active:bg-zinc-50"
+        class="btn bg-zinc-100 text-zinc-900 hover:bg-white active:bg-zinc-50 cursor-pointer"
       >
         Choose Image
-        <input type="file" name="image" id="input-img" hidden />
+        <input type="file" id="input-img" accept="image/*" hidden />
       </label>
 
       <button
-        class="btn bg-red-600 text-zinc-50 hover:bg-red-700 hover:text-white active:bg-red-700"
         id="resetBtn"
+        class="btn bg-red-600 text-white hover:bg-red-700 active:bg-red-800"
       >
         Reset
       </button>
 
       <button
-        class="btn bg-green-500 text-zinc-50 hover:bg-green-600/90 hover:text-white"
         id="downloadBtn"
+        class="btn bg-green-500 text-white hover:bg-green-600"
       >
         Download
       </button>
     </header>
 
-    <main class="w-full h-[90%] flex gap-5 mt-5 p-6">
-      <!-- Left Side -->
-      <div
-        class="w-full h-full bg-zinc-800/80 flex justify-center items-center"
-      >
-        <div
-          id="placeholder"
-          class="w-full h-full flex justify-center flex-col"
-        >
-          <i class="ri-image-line text-9xl self-center"></i>
-          <div class="text-xl self-center">No Image Added</div>
-        </div>
-        <canvas
-          id="canvas-img"
-          class="max-w-[90%] max-h-[80vh] hidden"
-        ></canvas>
-      </div>
+    <!-- Main Editor Layout -->
+    <main class="h-[calc(100vh-72px)] flex flex-col gap-2 p-2">
+      <!-- Preset Filters -->
+      <section
+        id="presets"
+        class="flex flex-wrap justify-center gap-2 p-2"
+        aria-label="Filter Presets"
+      ></section>
 
-      <!-- Right Side -->
-      <div class="w-[40%] h-full bg-zinc-800/80">
-        <div class="filters w-full h-full"></div>
+      <!-- Editor Area -->
+      <div class="flex flex-col lg:flex-row flex-1 gap-5 overflow-hidden">
+        <!-- Image Preview -->
+        <section
+          class="flex-1 bg-zinc-800 flex justify-center items-center relative"
+        >
+          <!-- Placeholder shown before image upload -->
+          <div
+            id="placeholder"
+            class="flex flex-col items-center justify-center text-center"
+          >
+            <i class="ri-image-line text-9xl"></i>
+            <p class="text-xl">No Image Added</p>
+          </div>
+
+          <!-- Canvas Preview -->
+          <canvas
+            id="canvas-img"
+            class="hidden max-w-[90%] max-h-[80vh]"
+            aria-label="Image Canvas"
+          ></canvas>
+        </section>
+
+        <!-- Filters Panel -->
+        <aside class="w-full lg:w-[320px] bg-zinc-800">
+          <div
+            id="filters"
+            class="h-full flex flex-col items-center gap-3 py-5 overflow-y-auto capitalize"
+          ></div>
+        </aside>
       </div>
     </main>
 

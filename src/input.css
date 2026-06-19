@@ -1,11 +1,8 @@
 @import "tailwindcss";
 
+/* Board */
 .block {
   @apply border border-zinc-400/20 rounded-[50%];
-}
-
-.li {
-  @apply border border-zinc-400 rounded-md p-1;
 }
 
 .fill {
@@ -17,45 +14,69 @@
 }
 
 #board {
-  @apply border w-full h-[92%] border-zinc-400/20 grid grow grid-cols-[repeat(auto-fit,minmax(50px,1fr))] grid-rows-[repeat(auto-fit,minmax(50px,1fr))];
+  @apply border border-zinc-400/20 w-full h-[92%]
+         grid grow
+         grid-cols-[repeat(auto-fit,minmax(50px,1fr))]
+         grid-rows-[repeat(auto-fit,minmax(50px,1fr))];
 }
 
+/* Columns */
 .colum {
-  @apply bg-zinc-800/60 rounded-xl h-full p-1 overflow-hidden border-2 border-dashed border-transparent duration-300;
-}
-
-.heading {
-  @apply w-full flex justify-between p-2;
-}
-
-.task {
-  @apply w-full bg-zinc-700 p-3 rounded-lg mb-2 hover:cursor-grab;
-}
-
-.button {
-  @apply self-end transition-colors duration-200 bg-red-600 text-zinc-50 p-1 rounded-lg cursor-pointer hover:bg-red-500 active:bg-red-700;
-}
-
-.title {
-  @apply font-semibold text-2xl mb-0;
+  @apply bg-zinc-800/60 rounded-xl h-full p-1
+         overflow-hidden border-2 border-dashed
+         border-transparent duration-300;
 }
 
 .hover {
   @apply border-zinc-50 bg-zinc-800 -translate-y-1;
 }
 
+/* Tasks */
 .tasks {
   @apply w-full h-full p-0.5;
 }
 
+.task {
+  @apply w-full bg-zinc-700 p-3 rounded-lg mb-2 cursor-grab;
+}
+
+/* Header */
+.heading {
+  @apply w-full flex justify-between p-2;
+}
+
+.title {
+  @apply text-2xl font-semibold;
+}
+
+/* Buttons */
 .btn {
-  @apply rounded-sm font-semibold px-2 py-1 transition-all duration-150 cursor-pointer active:scale-95;
+  @apply rounded-sm px-2 py-1 font-bold
+         cursor-pointer transition-all
+         duration-150 active:scale-95;
 }
 
-.filters {
-  @apply flex items-center flex-col pt-15 capitalize gap-2.5;
+.button {
+  @apply self-end bg-red-600 text-zinc-50 p-1 rounded-lg
+         cursor-pointer transition-colors duration-200
+         hover:bg-red-500 active:bg-red-700;
 }
 
+.presetBtn {
+  @apply capitalize border px-1 py-0.5 rounded-md
+         bg-zinc-400/80 text-zinc-900
+         font-mono font-semibold
+         cursor-pointer transition-transform duration-150
+         hover:bg-white hover:text-zinc-950
+         active:scale-95;
+}
+
+/* Lists */
+.li {
+  @apply border border-zinc-400 rounded-md p-1;
+}
+
+/* Filters */
 .filter input {
   @apply w-70;
 }
@@ -64,12 +85,15 @@
   @apply appearance-none bg-transparent cursor-pointer w-full;
 }
 
-/* Chrome, Edge, Safari */
+/* Chrome, Edge, Safari Track */
 .range-red::-webkit-slider-runnable-track {
   @apply h-0.5 rounded-full bg-zinc-100;
 }
 
+/* Chrome, Edge, Safari Thumb */
 .range-red::-webkit-slider-thumb {
-  @apply appearance-none h-4.5 w-4.5 rounded-full bg-red-600 border-2 border-red-300/70;
+  @apply appearance-none h-4.5 w-4.5 rounded-full
+         bg-red-600 border-2 border-red-300/70;
+
   margin-top: -8px;
 }
