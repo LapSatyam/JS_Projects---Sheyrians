@@ -13,7 +13,6 @@ let image = null;
 createFilters();
 
 
-
 ImgInput.addEventListener("change", e => {
     const file = e.target.files[0];
 
