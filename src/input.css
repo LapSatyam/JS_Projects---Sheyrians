@@ -49,7 +49,7 @@
 }
 
 .btn {
-  @apply p-1 rounded-sm font-semibold;
+  @apply rounded-sm font-semibold px-2 py-1;
 }
 
 .filters {
@@ -61,19 +61,15 @@
 }
 
 .range-red {
-  @apply appearance-none bg-transparent cursor-pointer;
+  @apply appearance-none bg-transparent cursor-pointer w-full;
 }
 
 /* Chrome, Edge, Safari */
 .range-red::-webkit-slider-runnable-track {
-  @apply h-1 rounded-full bg-red-600/35;
+  @apply h-0.5 rounded-full bg-zinc-100;
 }
 
 .range-red::-webkit-slider-thumb {
-  @apply appearance-none h-4.5 w-4.5 rounded-full bg-red-600 border-2 border-red-100;
-  margin-top: -7px;
-}
-
-.range-red::-moz-range-thumb {
-  @apply h-5 w-5 rounded-full bg-red-600 border-2 border-red-100;
+  @apply appearance-none h-4.5 w-4.5 rounded-full bg-red-600 border-2 border-red-300/70;
+  margin-top: -8px;
 }

@@ -12,16 +12,16 @@
       rel="stylesheet"
     />
   </head>
-  <body class="h-screen w-full bg-zinc-900 text-zinc-200 p-2">
+  <body class="h-screen w-full bg-zinc-950 text-zinc-200 p-2">
     <header class="h-fit w-full flex justify-center items-center gap-4 mt-5">
-      <label for="input-img">
+      <label for="input-img" class="bg-zinc-100 text-zinc-900 btn">
         Choose Image
         <input type="file" name="image" id="input-img" hidden />
       </label>
 
-      <button class="btn bg-red-600/90 text-white">Reset</button>
+      <button class="btn bg-red-600/90 text-white" id="resetBtn">Reset</button>
 
-      <button class="btn bg-green-500 text-white">Download</button>
+      <button class="btn bg-green-500 text-white" id="downloadBtn">Download</button>
     </header>
 
     <main class="w-full h-[90%] flex gap-5 mt-5 p-6">

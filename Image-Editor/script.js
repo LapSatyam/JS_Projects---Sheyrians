@@ -1,77 +1,17 @@
-const filters = {
-    brightness: {
-        value: 100,
-        min: 0,
-        max: 200,
-        unit: "%"
-    },
-
-    contrast: {
-        value: 100,
-        min: 0,
-        max: 200,
-        unit: "%"
-    },
-
-    saturation: {
-        value: 100,
-        min: 0,
-        max: 200,
-        unit: "%"
-    },
-
-    grayscale: {
-        value: 0,
-        min: 0,
-        max: 100,
-        unit: "%"
-    },
-
-    sepia: {
-        value: 0,
-        min: 0,
-        max: 100,
-        unit: "%"
-    },
-
-    invert: {
-        value: 0,
-        min: 0,
-        max: 100,
-        unit: "%"
-    },
-
-    blur: {
-        value: 0,
-        min: 0,
-        max: 20,
-        unit: "px"
-    },
-
-    hueRotate: {
-        value: 0,
-        min: 0,
-        max: 360,
-        unit: "deg"
-    }
-};
+let filters = getDefaultFilters();
 const filterContainer = document.querySelector(".filters");
 const ImgInput = document.querySelector("#input-img");
 const ImgCanvas = document.querySelector("#canvas-img")
 const canvasCtx = ImgCanvas.getContext("2d");
+const resetBtn = document.querySelector("#resetBtn");
+const downloadBtn = document.querySelector("#downloadBtn");
 
 let image = null;
 
 
-Object.keys(filters).forEach(key => {
-    const F = filters[key];
 
-    const filterElement = createFilterElement(key, F.unit, F.value, F.min, F.max);
+createFilters();
 
-    // console.log(F.value);
-    filterContainer.appendChild(filterElement);
-
-});
 
 
 ImgInput.addEventListener("change", e => {
@@ -88,20 +28,39 @@ ImgInput.addEventListener("change", e => {
         ImgCanvas.height = img.height;
         canvasCtx.drawImage(img, 0, 0);
     };
-})
+});
+
+resetBtn.addEventListener("click", () => {
+    filters = getDefaultFilters();
+    filterContainer.innerHTML = "";
+    createFilters();
+    applyFilters();
+});
+
+downloadBtn.addEventListener("click", () => {
+    downloadImage();
+});
 
 
 
+function createFilters() {
+    Object.keys(filters).forEach(key => {
+        const F = filters[key];
 
+        const filterElement = createFilterElement(key, F.unit, F.value, F.min, F.max);
 
+        // console.log(F.value);
+        filterContainer.appendChild(filterElement);
 
+    });
+};
 
 function createFilterElement(name, unit = "%", value, min, max) {
     const div = document.createElement("div");
     div.classList.add("filter");
 
     const input = document.createElement("input");
-    input.className = "range-red w-full"
+    input.className = "range-red"
     input.type = "range";
     input.min = min;
     input.max = max;
@@ -116,18 +75,47 @@ function createFilterElement(name, unit = "%", value, min, max) {
 
     input.addEventListener("input", e => {
         filters[name].value = input.value;
-        applyFilters(name);
+        applyFilters();
     });
 
     return div;
 };
 
-function applyFilters(name) {
-    if (name == "hueRotate") {
-        canvasCtx.filter = `hue-rotate(${filters[name].value}${filters[name].unit})`;
-    } else {
+function applyFilters() {
+    if (!image) return;
+    canvasCtx.filter = `
+        brightness(${filters.brightness.value}%)
+        contrast(${filters.contrast.value}%)
+        saturate(${filters.saturation.value}%)
+        grayscale(${filters.grayscale.value}%)
+        sepia(${filters.sepia.value}%)
+        invert(${filters.invert.value}%)
+        blur(${filters.blur.value}px)
+        hue-rotate(${filters.hueRotate.value}deg)
+    `;
 
-        canvasCtx.filter = `${name}(${filters[name].value}${filters[name].unit})`;
-    };
+    canvasCtx.clearRect(0, 0, ImgCanvas.width, ImgCanvas.height);
     canvasCtx.drawImage(image, 0, 0);
+    return;
+};
+
+function getDefaultFilters() {
+    return {
+        brightness: { value: 100, min: 0, max: 200, unit: "%" },
+        contrast: { value: 100, min: 0, max: 200, unit: "%" },
+        saturation: { value: 100, min: 0, max: 200, unit: "%" },
+        grayscale: { value: 0, min: 0, max: 100, unit: "%" },
+        sepia: { value: 0, min: 0, max: 100, unit: "%" },
+        invert: { value: 0, min: 0, max: 100, unit: "%" },
+        blur: { value: 0, min: 0, max: 20, unit: "px" },
+        hueRotate: { value: 0, min: 0, max: 360, unit: "deg" }
+    };
+};
+
+function downloadImage() {
+    if (!image) return;
+    const link = document.createElement("a");
+    link.download = "edited-image.png";
+    link.href = ImgCanvas.toDataURL();
+    link.click();
 };
